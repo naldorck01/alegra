@@ -1,0 +1,14 @@
+.layout {
+  background: red
+}
+
+.header {
+  background-image: url(../img/header.png);
+  background-color: var(--color-primary);
+  background-position: center center;
+  padding-bottom: 10px;
+  padding-top: 10px;
+}
+.header__logo {
+  height: 30px;
+}
