@@ -5,7 +5,7 @@ import st from "@css/Layout.module.css"
 import { SellerList } from "@components/Seller"
 import Header from "@components/Theme/Header"
 
-const Layout = () => {
+const Layout: React.FC = () => {
   const [data, set_data]: any = useState({
     seller_List: null,
   })
@@ -24,6 +24,7 @@ const Layout = () => {
   useEffect(() => {
     const get_sellers = async () => {
       try {
+        set_loading(true)
         const options = {
           method: "GET",
           headers: {
@@ -34,6 +35,7 @@ const Layout = () => {
 
         const res = await (await fetch(`${url_base}sellers`, options)).json()
         set_data({ ...data, seller_list: res })
+        set_loading(false)
       } catch (e) {
         set_data({})
         console.log(e)
@@ -45,14 +47,14 @@ const Layout = () => {
 
   useEffect(() => {
     if (!!form_input.search) {
-
+      console.log(form_input)
     }
   }, [form_input])
 
-  const handle_input_change = (event: any) => {
+  const handle_input_change = (event: React.FormEvent<HTMLInputElement>): void => {
     set_form_input({
       ...form_input,
-      [event.target.name]: event.target.value,
+      [event.currentTarget.name]: event.currentTarget.value,
     })
   }
 
