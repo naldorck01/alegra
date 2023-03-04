@@ -7,7 +7,7 @@ const endpoint = "https://www.googleapis.com";
 const apiKey = "AIzaSyD0ZYYQXYwusz0k1vJmXeJwf252H3sLs2w";
 const id = "c568e1a511f9a4307";
 
-const SearchBarImages = () => {
+const SearchBarImages = ({setImages}: any) => {
   const [form_input, set_form_input] = useState({
     search: "",
   })
@@ -33,6 +33,7 @@ const SearchBarImages = () => {
       const url = `${endpoint}/customsearch/v1?${buildQuery(query, options)}`;
       const result = await (await fetch(url)).json();
       console.log(result.items);
+      setImages(result.items)
     } catch (error: any) {
       return error.response.data.error.message;
     }
@@ -40,12 +41,15 @@ const SearchBarImages = () => {
 
   const buildQuery = (query: any, options: any) => {
     options = options || {};
-    const result = {
+    let result: any = {
       q: query.replace(/\s/g, "+"),
       searchType: "image",
       cx: id,
       key: apiKey,
     };
+    if (options.skipRecords) {
+      result.start = options.skipRecords;
+    }
     return new URLSearchParams(result).toString();
   }
 

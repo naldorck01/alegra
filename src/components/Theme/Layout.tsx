@@ -4,7 +4,8 @@ import "@/App.css"
 import st from "@css/Layout.module.css"
 import { SellerList } from "@components/Seller"
 import Header from "@components/Theme/Header"
-import {SearchBarImages} from "@components/SearchBarImages"
+import { SearchBarImages } from "@components/SearchBarImages"
+import { CardList } from "@components/CardList"
 
 const Layout: React.FC = () => {
   const [data, set_data]: any = useState({
@@ -14,6 +15,7 @@ const Layout: React.FC = () => {
   const [form_input, set_form_input] = useState({
     search: "",
   })
+  const [images, setImages] = useState(null)
 
   const alegra = {
     user: "naldorck@gmail.com",
@@ -87,8 +89,12 @@ const Layout: React.FC = () => {
                 />
                 <input type="submit" value="Buscar" />
               </form> */}
-              <SearchBarImages/>
+              <SearchBarImages setImages={setImages} />
             </section>
+          </article>
+
+          <article>
+            {images && <CardList images={images} />}
           </article>
         </section>
       </main>
