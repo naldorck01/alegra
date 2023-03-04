@@ -1,4 +1,4 @@
-// @types.alegra.td
+// @types.alegra.ts
 export interface ISeller {
   id: number
   name: string

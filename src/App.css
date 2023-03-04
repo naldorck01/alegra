@@ -6,13 +6,16 @@
   --media-xl: 1280px;
   --media-xxl: 1400px;
   --color-primary: #00b19d;
-  --color--secondary: #00535e;
-  --color-blue-dark: #23203f;
+  --color-secondary: #00535e;
+  --color-third: #00d5bd;
   --color-main-gray: #716f87;
   --font-family: "Montserrat", "Roboto", sans-serif;
 }
 
 /* Global config */
+* {
+  box-sizing: border-box;
+}
 html,
 body {
   font-family: var(--font-family);
@@ -24,6 +27,7 @@ p {
 }
 .app {
   display: grid;
+  padding-bottom: 4rem;
 }
 
 /* GRID */
@@ -35,7 +39,8 @@ p {
 .container {
   justify-self: center;
   padding: 0 20px;
-  width: var(--media-xxl);
+  width: 100%;
+  max-width: var(--media-xxl);
 }
 .align-x {
   justify-self: center;
@@ -44,8 +49,7 @@ p {
 /* Text */
 .text-title,
 .text-subtitle {
-  color: var(--color--secondary);
-  font-family: var(--font-family);
+  color: var(--color-secondary);
   font-weight: 400;
 }
 .text-title {
@@ -60,6 +64,15 @@ p {
   margin-bottom: 2rem;
   margin-top: 2rem;
 }
+.text-bold {
+  font-weight: 500;
+}
 .text-center {
   text-align: center;
+}
+.text-right {
+  text-align: right;
+}
+.text-primary {
+  color: var(--color-primary)
 }
