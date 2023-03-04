@@ -1,0 +1,6 @@
+{
+  "_comment": "Urls to consume external APIs",
+  "_author": "Naldo Duran<@naldorck@gmail.com>",
+  "_version": "0.1.1",
+  "alegra_v1": "https://api.alegra.com/api/v1/"
+}

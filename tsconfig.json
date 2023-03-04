@@ -21,6 +21,14 @@
       "@/*": ["/*"],
       "@css": ["assets/alegra/css/*"],
       "@components/*": ["components/*"],
+      "@config/*": ["config/*"],
+      "@contextApi/*": ["context/contextApi/*"],
+      "@hooks": ["hooks/index.ts"],
+      "@hooks/*": ["hooks/*"],
+      "@pages": ["pages/index.ts"],
+      "@pages/*": ["pages/*"],
+      "@svg": ["assets/alegra/svg/*"],
+      "@ctypes/*": ["@types/*"]
     }
   },
   "include": ["src"],
