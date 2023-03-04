@@ -4,6 +4,7 @@ import "@/App.css"
 import st from "@css/Layout.module.css"
 import { SellerList } from "@components/Seller"
 import Header from "@components/Theme/Header"
+import {SearchBarImages} from "@components/SearchBarImages"
 
 const Layout: React.FC = () => {
   const [data, set_data]: any = useState({
@@ -76,7 +77,7 @@ const Layout: React.FC = () => {
             <h2 className="text-subtitle text-center">&#161;Busca y escoge tu imagen favorita!</h2>
 
             <section>
-              <form>
+              {/* <form>
                 <input
                   type="text"
                   required
@@ -85,7 +86,8 @@ const Layout: React.FC = () => {
                   onChange={handle_input_change}
                 />
                 <input type="submit" value="Buscar" />
-              </form>
+              </form> */}
+              <SearchBarImages/>
             </section>
           </article>
         </section>
