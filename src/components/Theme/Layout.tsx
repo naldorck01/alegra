@@ -9,10 +9,12 @@
 
 import Header from "@components/Theme/Header"
 import { IPropsChildren } from "@ctypes/generics.td"
+import { WelcomePopup } from "@components/WelcomePopup"
 
 const Layout: React.FC<IPropsChildren> = (props: IPropsChildren) => {
   const template = (
     <>
+      <WelcomePopup />
       <Header />
       <main className="app">{props.children}</main>
     </>

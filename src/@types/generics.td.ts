@@ -3,7 +3,7 @@ export interface IPropsChildren {
   children: React.ReactNode
 }
 export interface IForm {
-  search?: string
+  search: string
 }
 
 export interface IUseform {

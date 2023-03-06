@@ -5,7 +5,12 @@
  * @author Naldo Duran <naldorck@gmail.com> *
  * @returns {React.Context<ISeller[]>}
  */
-import { ISeller } from "@ctypes/alegra.td"
+import { GlobalStateType } from "@contextApi/actionsTypes/AlegraActionTypes"
 import { createContext } from "react"
 
-export const AlegraContext: React.Context<ISeller[]> = createContext<ISeller[]>([])
+export const AlegraContext = createContext<GlobalStateType>({
+  sellers: {
+    state: [],
+    dispatch: () => null
+  }
+})
