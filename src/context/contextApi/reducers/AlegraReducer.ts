@@ -11,7 +11,7 @@ import { AlegraActionTypes } from "@contextApi/actionsTypes/AlegraActionTypes"
 interface IAlegraReducer {
   type: string
   payload: any
-  seller_id: number
+  seller_id?: number
 }
 
 export const AlegraReducer = (state: ISeller, action: IAlegraReducer) => {
