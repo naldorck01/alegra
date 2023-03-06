@@ -8,27 +8,26 @@
 import { ISeller } from "@ctypes/alegra.td"
 import { AlegraActionTypes } from "@contextApi/actionsTypes/AlegraActionTypes"
 
-interface IAlegraReducer {
-  type: string
-  payload: any
-  seller_id?: number
+interface IPayload {
+  sellers?: ISeller[]
+  images?: string
+  vote?: boolean
 }
 
-export const AlegraReducer = (state: ISeller, action: IAlegraReducer) => {
+interface IAlegraReducer {
+  type: string
+  payload: IPayload
+}
+
+export const AlegraReducer = (state: ISeller[], action: IAlegraReducer): ISeller[] => {
   // TODO: For loop sellers
   switch (action.type) {
     case AlegraActionTypes.seller_add_all:
-      return action.payload
+      return  action.payload.sellers || []
     case AlegraActionTypes.seller_add_img:
-      return {
-        ...state,
-        images: action.payload,
-      }
+      return action.payload.sellers || []
     case AlegraActionTypes.seller_add_vote:
-      return {
-        ...state,
-        votes: state.id + 1,
-      }
+      return action.payload.sellers || []
     default:
       return state
   }

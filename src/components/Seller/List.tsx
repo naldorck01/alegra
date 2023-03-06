@@ -23,7 +23,7 @@ const List: React.FC<IList> = ({ data }: IList) => {
       {data.map((item: ISeller, index: number) => (
         <li key={index} className={st["seller__score__table__item"]}>
           <p>{item.name}</p>
-          <p className="text-right text-primary text-bold">0</p>
+          <p className="text-right text-primary text-bold">{item.votes || 0}</p>
         </li>
       ))}
     </ul>

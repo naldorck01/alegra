@@ -1,6 +1,13 @@
+/**
+ * Component: Loading
+ *
+ * @version 1.0.1
+ * @author Naldo Duran <naldorck@gmail.com> *
+ *
+ */
 import { Fragment, useEffect, useImperativeHandle, useState, useCallback, forwardRef } from "react"
 import { createPortal } from "react-dom"
-import styles from "@components/Loading/Loading.module.css"
+import st from "@components/Loading/Loading.module.css"
 
 const loadingElement = document.getElementById("loading")
 
@@ -36,11 +43,38 @@ const Loading = forwardRef(({ defaultOpened = false }: any, ref) => {
   return createPortal(
     isOpen ? (
       <Fragment>
-        <div className={styles.container_loading}>
+        <div className={st.container_loading}>
           <svg>
-            <circle className={styles.circle} cx="50" cy="50" r="40" stroke="#00b19d" strokeDasharray="78.5 235.5" strokeWidth="3" fill="none" />
-            <circle className={styles.circle} cx="50" cy="50" r="30" stroke="#00535e" strokeDasharray="62.8 188.8" strokeWidth="3" fill="none" />
-            <circle className={styles.circle} cx="50" cy="50" r="20" stroke="#00d5bd" strokeDasharray="47.1 141.3" strokeWidth="3" fill="none" />
+            <circle
+              className={st.circle}
+              cx="50"
+              cy="50"
+              r="40"
+              stroke="#00b19d"
+              strokeDasharray="78.5 235.5"
+              strokeWidth="3"
+              fill="none"
+            />
+            <circle
+              className={st.circle}
+              cx="50"
+              cy="50"
+              r="30"
+              stroke="#00535e"
+              strokeDasharray="62.8 188.8"
+              strokeWidth="3"
+              fill="none"
+            />
+            <circle
+              className={st.circle}
+              cx="50"
+              cy="50"
+              r="20"
+              stroke="#00d5bd"
+              strokeDasharray="47.1 141.3"
+              strokeWidth="3"
+              fill="none"
+            />
           </svg>
         </div>
       </Fragment>

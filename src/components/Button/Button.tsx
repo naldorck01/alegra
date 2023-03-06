@@ -1,4 +1,11 @@
-import styles from '@components/Button/Button.module.css'
+/**
+ * Action Types: AlegraActionTypes
+ *
+ * @version 1.0.1
+ * @author Naldo Duran <naldorck@gmail.com> *
+ *
+ */
+import st from "@components/Button/Button.module.css"
 
 interface IButton {
   label: string
@@ -7,7 +14,7 @@ interface IButton {
 
 const Button = ({ label, onClick }: IButton) => {
   return (
-    <button className={styles.button_wrapper} onClick={onClick}>
+    <button className={st.button_wrapper} onClick={onClick}>
       <span>{label}</span>
     </button>
   )

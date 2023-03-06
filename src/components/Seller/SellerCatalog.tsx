@@ -10,13 +10,13 @@ import { SearchBarImages } from "@components/SearchBarImages"
 import { CardList } from "@components/CardList"
 
 const SellerCatalog: React.FC = () => {
-  const [images, setImages] = useState<string[]>([])
+  const [images, set_images] = useState<string[]>([])
 
   const template = (
     <article>
       <h2 className="text-subtitle text-center">&#161;Busca y escoge tu imagen favorita!</h2>
       <section>
-        <SearchBarImages setImages={setImages} />
+        <SearchBarImages set_images={set_images} />
       </section>
       <section>
         <CardList images={images} />

@@ -1,4 +1,5 @@
 # Description
+TODO
 
 # Usage
 <code>npm install</code>
@@ -41,5 +42,9 @@
 # CSS
 <p>BEM methodology(no-strict)</p>
 
+# Data Architecture
+<p>Flux + Context API (Native from React.js)</p>
+
 # Folder Architecture
+TODO
 
