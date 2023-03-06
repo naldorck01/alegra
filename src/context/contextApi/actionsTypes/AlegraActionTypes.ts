@@ -3,7 +3,7 @@
  *
  * @version 1.0.1
  * @author Naldo Duran <naldorck@gmail.com> *
- * @returns {React.Context<ISeller[]>}
+ *
  */
 import { Dispatch } from "react"
 import { ISeller } from "@ctypes/alegra.td"
