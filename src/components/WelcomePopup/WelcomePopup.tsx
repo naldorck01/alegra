@@ -7,7 +7,7 @@
  */
 import { useRef } from "react"
 import { Modal } from "@components/Modal"
-import styles from "@components/WelcomePopup/WelcomePopup.module.css"
+import st from "@components/WelcomePopup/WelcomePopup.module.css"
 import Logo from "@svg/logo_header_blue.svg"
 import { Button } from "@components/Button"
 
@@ -16,14 +16,14 @@ const WelcomePopup = () => {
 
   return (
     <Modal defaultOpened blockModal hideCloseButton ref={popupRef}>
-      <div className={styles.welcome_popup_container}>
-        <div className={styles.welcome_header}>
+      <div className={st.welcome_popup_container}>
+        <div className={st.welcome_header}>
           <img src={Logo} alt="Logo" />
           <h2>
             ¡Bienvenido a la carrera para encontrar las <span>im&aacute;genes</span> más interesantes de la web!
           </h2>
         </div>
-        <div className={styles.welcome_body}>
+        <div className={st.welcome_body}>
           <p>Instrucciones:</p>
           <ul>
             <li>Debe ingresar en la aplicación la palabra sobre la cual desea consultar imágenes.</li>
@@ -41,7 +41,7 @@ const WelcomePopup = () => {
             </li>
           </ul>
         </div>
-        <div className={styles.welcome_footer}>
+        <div className={st.welcome_footer}>
           <Button label="¡A Correr!" onClick={() => popupRef.current.close()} />
         </div>
       </div>

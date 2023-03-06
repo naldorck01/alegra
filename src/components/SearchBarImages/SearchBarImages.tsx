@@ -6,42 +6,42 @@
  * @returns {React.FC}
  */
 import { useEffect } from "react"
-import styles from "@components/SearchBarImages/SearchBarImages.module.css"
-import { useForm, useGetGoogleImages } from "@hooks"
+import st from "@css/SearchBarImages.module.css"
 import { Loading } from "@components/Loading"
+import { useForm, useGetGoogleImages } from "@hooks"
 
 interface ISearchBarImages {
-  setImages: (data: string[]) => void
+  set_images: (data: string[]) => void
 }
 
-const SearchBarImages = ({ setImages }: ISearchBarImages) => {
+const SearchBarImages = ({ set_images }: ISearchBarImages) => {
   const { form_input, handle_input_change } = useForm()
   const { data, loading, searchImages } = useGetGoogleImages()
 
   useEffect(() => {
-    !!data && setImages(data)
+    !!data && set_images(data)
+    console.log(data)
   }, [data])
 
   const onSubmit = (event: React.FormEvent): void => {
     event.preventDefault()
-    console.log("search", form_input.search)
     searchImages(form_input.search, {})
   }
 
   return (
     <>
       {loading && <Loading defaultOpened={loading} />}
-      <form className={styles.wrapper} onSubmit={onSubmit}>
-        <div className={styles.searchBar}>
+      <form className={st.wrapper} onSubmit={onSubmit}>
+        <div className={st.searchBar}>
           <input
-            className={styles.searchQueryInput}
+            className={st.searchQueryInput}
             type="text"
             required
             placeholder="Im&aacute;genes del mundo"
             name="search"
             onChange={handle_input_change}
           />
-          <button className={styles.searchQuerySubmit} type="submit" name="searchQuerySubmit">
+          <button className={st.searchQuerySubmit} type="submit" name="searchQuerySubmit">
             <svg style={{ width: "24px", height: "24px" }} viewBox="0 0 24 24">
               <path
                 fill="#666666"

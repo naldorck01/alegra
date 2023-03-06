@@ -5,8 +5,9 @@
  * @author Naldo Duran <naldorck@gmail.com> *
  * @returns {React.FC}
  */
-
-import styles from "@components/CardList/CardList.module.css"
+import { useContext } from "react"
+import { AlegraContext } from "@contextApi/context/AlegraContext"
+import st from "@css/CardList.module.css"
 import { CardImage } from "@components/CardImage"
 
 interface ICardList {
@@ -14,8 +15,10 @@ interface ICardList {
 }
 
 const CardList = ({ images }: ICardList) => {
+  const { sellers } = useContext(AlegraContext)
+
   return (
-    <div className={styles.main}>
+    <div className={st.main}>
       {images.map((image: any, index: number) => (
         <CardImage key={index} name="radio" img={image.link} value={index.toString()} />
       ))}

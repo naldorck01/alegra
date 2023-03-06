@@ -5,17 +5,20 @@
  * @author Naldo Duran <naldorck@gmail.com> *
  * @returns {React.FC}
  */
-import { useContext } from "react"
-import { AlegraContext } from "@contextApi/context/AlegraContext"
+import { useContext, useEffect } from "react"
+import st from "@css/Seller.module.css"
 import { alegra_v1 } from "@config/api.json"
 import { alegra } from "@config/credentials.json"
-import List from "@components/Seller/List"
 import { ISeller } from "@ctypes/alegra.td"
+import { Loading } from "@components/Loading"
+import List from "@components/Seller/List"
+import { AlegraActionTypes } from "@contextApi/actionsTypes/AlegraActionTypes"
+import { AlegraContext } from "@contextApi/context/AlegraContext"
 import { useFetch } from "@hooks"
-import st from "@css/Seller.module.css"
 
 const SellerScore: React.FC = () => {
   const { sellers } = useContext(AlegraContext)
+
   let options = {
     method: "GET",
     headers: {
@@ -23,10 +26,25 @@ const SellerScore: React.FC = () => {
       authorization: `Basic ${alegra.b64}`,
     },
   }
-  const { data } = useFetch<ISeller[]>(`${alegra_v1}sellers`, options)
-  sellers.dispatch(data)
+  const { loading, data } = useFetch<ISeller[]>(`${alegra_v1}sellers`, options)
 
-  const template = <article className={st["seller__score"]}>{!!data && <List data={data} />}</article>
+  useEffect(() => {
+    if (!!data) {
+      sellers.dispatch({
+        type: AlegraActionTypes.seller_add_all,
+        payload: {
+          sellers: data,
+        },
+      })
+    }
+  }, [data])
+
+  const template = (
+    <>
+      {loading && <Loading defaultOpened={loading} />}
+      <article className={st["seller__score"]}>{!!sellers.state && <List data={sellers.state} />}</article>
+    </>
+  )
 
   return template
 }

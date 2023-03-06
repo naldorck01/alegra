@@ -8,15 +8,15 @@
 import { Dispatch } from "react"
 import { ISeller } from "@ctypes/alegra.td"
 
-type ContextPropType<State, DispactActions> = IContextProps<State, DispactActions>
-
 interface IContextProps<State, DispactActions> {
   state: State
   dispatch: Dispatch<DispactActions>
 }
 
+type ContextPropType<State, DispactActions> = IContextProps<State, DispactActions>
+
 export type GlobalStateType = {
-  sellers: ContextPropType<Array<ISeller>, any>
+  sellers: ContextPropType<ISeller[], any>
 }
 
 export const AlegraActionTypes = {
