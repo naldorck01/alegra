@@ -1,11 +1,11 @@
 /**
- * Reducer: AlegraReducer
+ * Reducer: AlegraReducer, AlegraReducerSearch
  *
  * @version 1.0.1
  * @author Naldo Duran <naldorck@gmail.com> *
  * @returns {React.Context<ISeller[]>}
  */
-import { ISeller } from "@ctypes/alegra.td"
+import { ISeller, ISearch } from "@ctypes/alegra.td"
 import { Item } from "@ctypes/google.td"
 import { AlegraActionTypes } from "@contextApi/actionsTypes/AlegraActionTypes"
 
@@ -15,10 +15,6 @@ interface IPayload {
   vote_id?: number
 }
 
-interface IPayloadSearch {
-  word: string
-}
-
 interface IAlegraReducer {
   type: string
   payload: IPayload
@@ -26,14 +22,14 @@ interface IAlegraReducer {
 
 interface IAlegraReducerSearch {
   type: string
-  payload: IPayloadSearch
+  payload: ISearch
 }
 
 export const AlegraReducer = (state: ISeller[], action: IAlegraReducer): ISeller[] => {
-  // TODO: For loop sellers
   switch (action.type) {
     case AlegraActionTypes.seller_add_all:
       return action.payload.sellers || []
+
     case AlegraActionTypes.seller_add_img:
       const images = action.payload.images
 
@@ -59,13 +55,17 @@ export const AlegraReducer = (state: ISeller[], action: IAlegraReducer): ISeller
   }
 }
 
-export const AlegraReducerSearch = (state: string, action: IAlegraReducerSearch): string => {
+export const AlegraReducerSearch = (state: ISearch, action: IAlegraReducerSearch): ISearch => {
   switch (action.type) {
     case AlegraActionTypes.search_set:
-      return action.payload.word
+      return {
+        word: action.payload.word,
+      }
 
     case AlegraActionTypes.search_clear:
-      return ""
+      return {
+        word: "",
+      }
 
     default:
       return state

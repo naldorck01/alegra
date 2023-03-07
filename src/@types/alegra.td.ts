@@ -1,4 +1,8 @@
 // @types.alegra.ts
+export interface ISearch {
+  word: string
+}
+
 export interface ISeller {
   id: number
   name: string

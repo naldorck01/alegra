@@ -6,7 +6,7 @@
  *
  */
 import { Dispatch } from "react"
-import { ISeller } from "@ctypes/alegra.td"
+import { ISearch, ISeller } from "@ctypes/alegra.td"
 
 interface IContextProps<State, DispactActions> {
   state: State
@@ -17,7 +17,7 @@ type ContextPropType<State, DispactActions> = IContextProps<State, DispactAction
 
 export type GlobalStateType = {
   sellers: ContextPropType<ISeller[], any>
-  search: ContextPropType<ISeller[], any>
+  search: ContextPropType<ISearch, any>
 }
 
 export const AlegraActionTypes = {

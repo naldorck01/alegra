@@ -11,7 +11,7 @@ import { CardList } from "@components/CardList"
 import { useAlegraContext } from "@hooks"
 
 const SellerCatalog: React.FC = () => {
-  const { sellers } = useAlegraContext()
+  const { search, sellers } = useAlegraContext()
 
   const template = (
     <article>
@@ -19,9 +19,7 @@ const SellerCatalog: React.FC = () => {
       <section>
         <SearchBarImages />
       </section>
-      <section>
-        <CardList />
-      </section>
+      <section>{!!search.state.word && <CardList />}</section>
     </article>
   )
 

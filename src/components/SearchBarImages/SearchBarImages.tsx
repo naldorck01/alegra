@@ -12,7 +12,7 @@ import { AlegraActionTypes } from "@contextApi/actionsTypes/AlegraActionTypes"
 import { useForm, useGetGoogleImages, useAlegraContext } from "@hooks"
 
 const SearchBarImages = () => {
-  const { sellers } = useAlegraContext()
+  const { search, sellers } = useAlegraContext()
   const { form_input, handle_input_change } = useForm()
   const { data, loading, searchImages } = useGetGoogleImages()
 
@@ -24,11 +24,18 @@ const SearchBarImages = () => {
           images: data,
         },
       })
+      console.log(search.state)
   }, [data])
 
   const onSubmit = (event: React.FormEvent): void => {
     event.preventDefault()
     searchImages(form_input.search, {})
+    search.dispatch({
+      type: AlegraActionTypes.search_set,
+      payload: {
+        word: form_input.search
+      }
+    })
   }
 
   return (
