@@ -16,6 +16,7 @@ interface IModal {
   defaultOpened?: boolean
   blockModal?: boolean
   hideCloseButton?: boolean
+  dissapearAfterTime?: boolean
   children: ReactNode
 }
 
@@ -25,7 +26,7 @@ interface IActions {
 }
 
 const Modal = forwardRef<IActions | null, IModal>(
-  ({ children, defaultOpened = false, blockModal = false, hideCloseButton = false }, ref) => {
+  ({ children, defaultOpened = false, blockModal = false, hideCloseButton = false, dissapearAfterTime = false }, ref) => {
     const [isOpen, setIsOpen] = useState(defaultOpened)
 
     const close = useCallback(() => setIsOpen(false), [])
@@ -52,6 +53,10 @@ const Modal = forwardRef<IActions | null, IModal>(
         document.removeEventListener("keydown", handleEscape, false)
       }
     }, [handleEscape, isOpen])
+
+    useEffect(() => {
+      dissapearAfterTime && setTimeout(() => close(), 5000)
+    }, [dissapearAfterTime])
 
     const onClickOverlay = () => !blockModal && close()
 

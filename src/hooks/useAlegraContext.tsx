@@ -10,9 +10,9 @@ import { AlegraContext } from "@contextApi/context/AlegraContext"
 import { GlobalStateType } from "@contextApi/actionsTypes/AlegraActionTypes"
 
 const useAlegraContext = () => {
-  const { sellers, search } = useContext<GlobalStateType>(AlegraContext)
+  const { sellers, search, current_vote_img } = useContext<GlobalStateType>(AlegraContext)
 
-  return { sellers, search }
+  return { sellers, search, current_vote_img }
 }
 
 export default useAlegraContext

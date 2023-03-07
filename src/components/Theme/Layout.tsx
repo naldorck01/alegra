@@ -10,11 +10,13 @@
 import Header from "@components/Theme/Header"
 import { IPropsChildren } from "@ctypes/generics.td"
 import { WelcomePopup } from "@components/WelcomePopup"
+import { VoteSuccessPopup } from "@components/VoteSuccessPopup"
 
 const Layout: React.FC<IPropsChildren> = (props: IPropsChildren) => {
   const template = (
     <>
       <WelcomePopup />
+      <VoteSuccessPopup />
       <Header />
       <main className="app">{props.children}</main>
     </>

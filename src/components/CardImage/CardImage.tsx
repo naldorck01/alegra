@@ -18,7 +18,7 @@ interface ICardImage {
 }
 
 const CardImage = ({ name, seller }: ICardImage) => {
-  const { search, sellers } = useAlegraContext()
+  const { search, sellers, current_vote_img } = useAlegraContext()
   const image = !!seller.images && !!seller.images.length ? seller.images[seller.images.length - 1] : Logo
 
   const event_vote = (event: React.FormEvent): void => {
@@ -30,26 +30,33 @@ const CardImage = ({ name, seller }: ICardImage) => {
         vote_id: seller.id
       }
     })
-
+    current_vote_img.dispatch({
+      type: AlegraActionTypes.seller_handle_current_vote_img,
+      payload: {
+        current_vote_img: image
+      }
+    })
     search.dispatch({
       type: AlegraActionTypes.search_clear
     })
   }
 
   const template = (
-    <label className={st.radio_card}>
-      <input className={st.radio_card_input} type="radio" name={name} value={seller.id} />
-      <div className={st.card_content_wrapper}>
-        <span className={st.check_icon}></span>
-        <div className={st.card_content}>
-          <img src={image} alt="" />
-          <h4>{seller.name}</h4>
-          <button className={stb.button_wrapper} onClick={event_vote}>
-            <span>Votar</span>
-          </button>
+    <>
+      <label className={st.radio_card}>
+        <input className={st.radio_card_input} type="radio" name={name} value={seller.id} />
+        <div className={st.card_content_wrapper}>
+          <span className={st.check_icon}></span>
+          <div className={st.card_content}>
+            <img src={image} alt="" />
+            <h4>{seller.name}</h4>
+            <button className={stb.button_wrapper} onClick={event_vote}>
+              <span>Votar</span>
+            </button>
+          </div>
         </div>
-      </div>
-    </label>
+      </label>
+    </>
   )
 
   return template

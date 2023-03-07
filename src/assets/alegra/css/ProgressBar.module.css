@@ -1,0 +1,26 @@
+.progress_bar {
+  background-color: var(--color-main-gray);
+  border-radius: 8px;
+  padding: 3px;
+  width: 100%;
+}
+
+.progress_bar div {
+  background-color: var(--color-primary);
+  width: 0%;
+  height: 5px;
+  border-radius: 5px;
+  animation:loadbar 5s;
+}
+
+@keyframes loadbar {
+
+0% {
+    width: 0%;
+}
+
+ 100% {
+    width: 100%;
+ }
+
+}

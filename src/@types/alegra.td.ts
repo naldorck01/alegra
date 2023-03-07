@@ -4,6 +4,10 @@ export interface ISearch {
   status: number
 }
 
+export interface ICurrentVoteImg {
+  current_vote_img: string
+}
+
 export interface ISeller {
   id: number
   name: string

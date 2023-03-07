@@ -5,7 +5,7 @@
  * @author Naldo Duran <naldorck@gmail.com> *
  * @returns {React.Context<ISeller[]>}
  */
-import { ISeller, ISearch } from "@ctypes/alegra.td"
+import { ISeller, ISearch, ICurrentVoteImg } from "@ctypes/alegra.td"
 import { Item } from "@ctypes/google.td"
 import { AlegraActionTypes } from "@contextApi/actionsTypes/AlegraActionTypes"
 
@@ -23,6 +23,11 @@ interface IAlegraReducer {
 interface IAlegraReducerSearch {
   type: string
   payload: ISearch
+}
+
+interface IAlegraReducerVoteImg {
+  type: string
+  payload: ICurrentVoteImg
 }
 
 export const AlegraReducer = (state: ISeller[], action: IAlegraReducer): ISeller[] => {
@@ -72,6 +77,23 @@ export const AlegraReducerSearch = (state: ISearch, action: IAlegraReducerSearch
       return {
         word: "",
         status: 0,
+      }
+
+    default:
+      return state
+  }
+}
+
+export const AlegraReducerVoteImg = (state: ICurrentVoteImg, action: IAlegraReducerVoteImg): ICurrentVoteImg => {
+  switch (action.type) {
+    case AlegraActionTypes.seller_handle_current_vote_img:
+      return {
+        current_vote_img: action.payload.current_vote_img,
+      }
+    
+    case AlegraActionTypes.seller_clear_current_vote_img:
+      return {
+        current_vote_img: "",
       }
 
     default:
