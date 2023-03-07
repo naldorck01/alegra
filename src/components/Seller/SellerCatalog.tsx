@@ -9,9 +9,11 @@
 import { SearchBarImages } from "@components/SearchBarImages"
 import { CardList } from "@components/CardList"
 import { useAlegraContext } from "@hooks"
+import { NotFound } from "@components/NotFound"
 
 const SellerCatalog: React.FC = () => {
   const { search, sellers } = useAlegraContext()
+  console.log("search", search.state)
 
   const template = (
     <article>
@@ -19,7 +21,7 @@ const SellerCatalog: React.FC = () => {
       <section>
         <SearchBarImages />
       </section>
-      <section>{!!search.state.word && <CardList />}</section>
+      <section>{search.state.status === 404 ? <NotFound /> : search.state.status && <CardList />}</section>
     </article>
   )
 

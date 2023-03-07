@@ -14,7 +14,7 @@ export const AlegraContext = createContext<GlobalStateType>({
     dispatch: () => null
   },
   search: {
-    state: { word: ""},
+    state: { word: "", status: 0 },
     dispatch: () => null
   }
 })

@@ -11,7 +11,7 @@ import { AlegraReducer, AlegraReducerSearch } from "@contextApi/reducers/AlegraR
 
 const AlegraProvider = (props: { children: ReactNode }) => {
   const [sellers, set_sellers] = useReducer(AlegraReducer, [])
-  const [word, set_word] = useReducer(AlegraReducerSearch, { word: ""})
+  const [word, set_word] = useReducer(AlegraReducerSearch, { word: "", status: 0 })
 
   const dataProvider = {
     sellers: {

@@ -25,5 +25,6 @@ export const AlegraActionTypes = {
   seller_add_vote: "[alegra] add 1 vote",
   seller_add_img: "[alegra] add 1 img",
   search_set: "[alegra] set search current word",
+  search_set_status: "[alegra] set search current status",
   search_clear: "[alegra] clear search word",
 }

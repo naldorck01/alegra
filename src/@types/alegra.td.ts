@@ -1,6 +1,7 @@
 // @types.alegra.ts
 export interface ISearch {
   word: string
+  status: number
 }
 
 export interface ISeller {

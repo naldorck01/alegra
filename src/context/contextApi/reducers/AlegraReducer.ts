@@ -59,12 +59,18 @@ export const AlegraReducerSearch = (state: ISearch, action: IAlegraReducerSearch
   switch (action.type) {
     case AlegraActionTypes.search_set:
       return {
+        ...state,
         word: action.payload.word,
       }
-
+    case AlegraActionTypes.search_set_status:
+      return {
+        ...state,
+        status: action.payload.status,
+      }
     case AlegraActionTypes.search_clear:
       return {
         word: "",
+        status: 0
       }
 
     default:
