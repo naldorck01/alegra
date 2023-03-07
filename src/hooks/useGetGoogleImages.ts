@@ -39,7 +39,7 @@ export const useGetGoogleImages = () => {
 
   const buildQuery = (query: any, options: any) => {
     options = options || {}
-    let result: any = {
+    const result: any = {
       q: query.replace(/\s/g, "+"),
       searchType: "image",
       cx: id,
