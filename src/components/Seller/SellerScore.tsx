@@ -38,6 +38,30 @@ const SellerScore: React.FC = () => {
     }
   }, [data])
 
+  useEffect(() => {
+    const participants: ISeller[] = sellers.state.map((item: ISeller) => {
+      return {
+        ...item,
+        votes: !!item.votes ? item.votes : 0,
+      }
+    })
+
+    const winner: ISeller[] = participants.filter((item: ISeller) => typeof item.votes === "number" && item.votes > 20)
+
+    if (!!winner.length) {
+      const winner_points: number = participants.reduce((accumulator: number, current: ISeller) => {
+        if (typeof current.votes === "number") {
+          return accumulator + current.votes
+        }
+        return accumulator
+      }, 0)
+
+      console.log(participants)
+      console.log(winner[0])
+      console.log(winner_points)
+    }
+  }, [sellers.state])
+
   const template = (
     <>
       {loading && <Loading defaultOpened={loading} />}
