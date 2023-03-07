@@ -5,7 +5,7 @@
  * @author Naldo Duran <naldorck@gmail.com> *
  * @returns {React.FC}
  */
-import { useContext, useEffect } from "react"
+import { useEffect } from "react"
 import st from "@css/Seller.module.css"
 import { alegra_v1 } from "@config/api.json"
 import { alegra } from "@config/credentials.json"
@@ -13,11 +13,10 @@ import { ISeller } from "@ctypes/alegra.td"
 import { Loading } from "@components/Loading"
 import List from "@components/Seller/List"
 import { AlegraActionTypes } from "@contextApi/actionsTypes/AlegraActionTypes"
-import { AlegraContext } from "@contextApi/context/AlegraContext"
-import { useFetch } from "@hooks"
+import { useFetch, useAlegraContext } from "@hooks"
 
 const SellerScore: React.FC = () => {
-  const { sellers } = useContext(AlegraContext)
+  const { sellers } = useAlegraContext()
 
   let options = {
     method: "GET",

@@ -8,19 +8,22 @@
 import { useEffect } from "react"
 import st from "@css/SearchBarImages.module.css"
 import { Loading } from "@components/Loading"
-import { useForm, useGetGoogleImages } from "@hooks"
+import { AlegraActionTypes } from "@contextApi/actionsTypes/AlegraActionTypes"
+import { useForm, useGetGoogleImages, useAlegraContext } from "@hooks"
 
-interface ISearchBarImages {
-  set_images: (data: string[]) => void
-}
-
-const SearchBarImages = ({ set_images }: ISearchBarImages) => {
+const SearchBarImages = () => {
+  const { sellers } = useAlegraContext()
   const { form_input, handle_input_change } = useForm()
   const { data, loading, searchImages } = useGetGoogleImages()
 
   useEffect(() => {
-    !!data && set_images(data)
-    console.log(data)
+    !!data &&
+      sellers.dispatch({
+        type: AlegraActionTypes.seller_add_img,
+        payload: {
+          images: data,
+        },
+      })
   }, [data])
 
   const onSubmit = (event: React.FormEvent): void => {

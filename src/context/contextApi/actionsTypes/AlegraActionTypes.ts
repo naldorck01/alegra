@@ -17,10 +17,13 @@ type ContextPropType<State, DispactActions> = IContextProps<State, DispactAction
 
 export type GlobalStateType = {
   sellers: ContextPropType<ISeller[], any>
+  search: ContextPropType<ISeller[], any>
 }
 
 export const AlegraActionTypes = {
   seller_add_all: "[alegra] add all sellers",
   seller_add_vote: "[alegra] add 1 vote",
   seller_add_img: "[alegra] add 1 img",
+  search_set: "[alegra] set search current word",
+  search_clear: "[alegra] clear search word",
 }

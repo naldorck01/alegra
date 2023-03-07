@@ -5,25 +5,22 @@
  * @author Naldo Duran <naldorck@gmail.com> *
  * @returns {React.FC}
  */
-import { useContext } from "react"
-import { AlegraContext } from "@contextApi/context/AlegraContext"
 import st from "@css/CardList.module.css"
 import { CardImage } from "@components/CardImage"
+import { useAlegraContext } from "@hooks"
 
-interface ICardList {
-  images: string[]
-}
+const CardList = () => {
+  const { sellers } = useAlegraContext()
 
-const CardList = ({ images }: ICardList) => {
-  const { sellers } = useContext(AlegraContext)
-
-  return (
+  const template = (
     <div className={st.main}>
-      {images.map((image: any, index: number) => (
-        <CardImage key={index} name="radio" img={image.link} value={index.toString()} />
+      {sellers.state.map((item: any, index: number) => (
+        <CardImage key={index} name="radio" seller={item} />
       ))}
     </div>
   )
+
+  return template
 }
 
 export default CardList
