@@ -4,6 +4,12 @@ export interface ISearch {
   status: number
 }
 
+export interface IWinner {
+  seller: ISeller
+  invoice: IInvoice
+  votes: number
+}
+
 export interface ICurrentVoteImg {
   current_vote_img: string
 }
