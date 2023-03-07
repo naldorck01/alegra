@@ -18,7 +18,7 @@ import { useFetch, useAlegraContext } from "@hooks"
 const SellerScore: React.FC = () => {
   const { sellers } = useAlegraContext()
 
-  let options = {
+  const options = {
     method: "GET",
     headers: {
       accept: "application/json",

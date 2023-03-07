@@ -12,8 +12,7 @@ import { useAlegraContext } from "@hooks"
 import { NotFound } from "@components/NotFound"
 
 const SellerCatalog: React.FC = () => {
-  const { search, sellers } = useAlegraContext()
-  console.log("search", search.state)
+  const { search } = useAlegraContext()
 
   const template = (
     <article>
