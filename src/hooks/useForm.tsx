@@ -14,6 +14,13 @@ const useForm = (): IUseform => {
     search: "",
   })
 
+  const event_set_manually_input = (val: string, inp: string): void => {
+    set_form_input({
+      ...form_input,
+      [inp]: val,
+    })
+  }
+
   const handle_input_change = (event: React.FormEvent<HTMLInputElement>): void => {
     set_form_input({
       ...form_input,
@@ -21,7 +28,7 @@ const useForm = (): IUseform => {
     })
   }
 
-  return { form_input, handle_input_change }
+  return { form_input, event_set_manually_input, handle_input_change }
 }
 
 export default useForm
