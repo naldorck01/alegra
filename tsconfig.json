@@ -27,6 +27,8 @@
       "@hooks/*": ["hooks/*"],
       "@pages": ["pages/index.ts"],
       "@pages/*": ["pages/*"],
+      "@router": ["router/index.ts"],
+      "@router/*": ["router/*"],
       "@svg": ["assets/alegra/svg/*"],
       "@ctypes/*": ["@types/*"]
     }

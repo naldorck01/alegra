@@ -1,13 +1,12 @@
-import React from "react"
 import ReactDOM from "react-dom/client"
-import { DashboardPage } from "@pages"
+import AlegraRouter from "./router/AlegraRouter"
 import AlegraProvider from "@contextApi/providers/AlegraProvider"
 import "@/App.css"
 
 ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
 
-    <AlegraProvider>
-      <DashboardPage />
-    </AlegraProvider>
+  <AlegraProvider>
+    <AlegraRouter />
+  </AlegraProvider>
   ,
 )

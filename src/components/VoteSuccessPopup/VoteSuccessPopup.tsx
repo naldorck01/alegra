@@ -17,7 +17,7 @@ const VoteSuccessPopup = ({ }: IVote) => {
     if (image) {
       useTimeOut = setTimeout(() => current_vote_img.dispatch({
         type: AlegraActionTypes.seller_clear_current_vote_img
-      }), 5000)
+      }), 3000)
     }
     return () => clearTimeout(useTimeOut)
   }, [image])
