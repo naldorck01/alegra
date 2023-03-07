@@ -16,6 +16,7 @@ export default defineConfig({
       "@contextApi": path.resolve(__dirname, "./src/context/contextApi"),
       "@hooks": path.resolve(__dirname, "./src/hooks"),
       "@pages": path.resolve(__dirname, "./src/pages"),
+      "@router": path.resolve(__dirname, "./src/router"),
       "@svg": path.resolve(__dirname, "./src/assets/alegra/svg"),
       "@ctypes": path.resolve(__dirname, "./src/@types")
     },
