@@ -55,7 +55,9 @@ const Modal = forwardRef<IActions | null, IModal>(
     }, [handleEscape, isOpen])
 
     useEffect(() => {
-      dissapearAfterTime && setTimeout(() => close(), 5000)
+      let useTimeOut: ReturnType<typeof setTimeout>
+      if (dissapearAfterTime) setTimeout(() => close(), 5000)
+      return () => clearTimeout(useTimeOut)
     }, [dissapearAfterTime])
 
     const onClickOverlay = () => !blockModal && close()

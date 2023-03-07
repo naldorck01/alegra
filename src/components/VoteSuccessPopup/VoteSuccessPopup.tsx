@@ -13,11 +13,13 @@ const VoteSuccessPopup = ({ }: IVote) => {
   let image = current_vote_img.state.current_vote_img
 
   useEffect(() => {
+    let useTimeOut: ReturnType<typeof setTimeout>;
     if (image) {
-      setTimeout(() => current_vote_img.dispatch({
+      useTimeOut = setTimeout(() => current_vote_img.dispatch({
         type: AlegraActionTypes.seller_clear_current_vote_img
       }), 5000)
     }
+    return () => clearTimeout(useTimeOut)
   }, [image])
 
   return (
