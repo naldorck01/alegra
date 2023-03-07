@@ -1,5 +1,5 @@
 import { Route, Routes, BrowserRouter } from 'react-router-dom';
-import { DashboardPage } from "@pages"
+import { DashboardPage, BillPage } from "@pages"
 import Layout from '@components/Theme/Layout';
 
 const AlegraRouter = () => {
@@ -8,7 +8,7 @@ const AlegraRouter = () => {
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<DashboardPage />} />
-          <Route path="/bill" element={<><h1 style={{fontSize: "5rem"}}>Bill</h1></>} />
+          <Route path="/bill" element={<BillPage />} />
         </Routes>
       </BrowserRouter>
     </Layout>
