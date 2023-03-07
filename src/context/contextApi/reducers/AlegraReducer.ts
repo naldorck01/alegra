@@ -45,7 +45,7 @@ export const AlegraReducer = (state: ISeller[], action: IAlegraReducer): ISeller
     case AlegraActionTypes.seller_add_vote:
       return state.map((item: ISeller, index: number) => {
         if (action.payload.vote_id === item.id) {
-          item.votes = !!item.votes ? item.votes + 1 : 1
+          item.votes = !!item.votes ? item.votes + 3 : 3
         }
         return item
       })
