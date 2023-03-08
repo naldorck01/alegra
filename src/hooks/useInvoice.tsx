@@ -7,6 +7,7 @@
  */
 import { alegra } from "@config/credentials.json"
 import { alegra_v1 } from "@config/api.json"
+import { IInvoice } from "@ctypes/alegra.td"
 
 interface IInvoicePost {
   data: any
@@ -19,6 +20,7 @@ interface IInvoicePostPayload {
 
 interface IUseInvoice {
   invoice_post: (payload: IInvoicePostPayload) => Promise<IInvoicePost>
+  invoice_get: (payload: string) => Promise<IInvoice>
 }
 
 const useInvoice = (): IUseInvoice => {
@@ -35,13 +37,6 @@ const useInvoice = (): IUseInvoice => {
         status: "open",
         date: _date.toISOString().split("T")[0],
         dueDate: _date.toISOString().split("T")[0],
-        subtotal: 1,
-        discount: 0,
-        tax: 0,
-        total: 1,
-        totalPaid: 0,
-        balance: 1,
-        decimalPrecision: "0",
         numberTemplate: {
           number: 1,
         },
@@ -67,7 +62,19 @@ const useInvoice = (): IUseInvoice => {
     return data
   }
 
-  return { invoice_post }
+  const invoice_get = async (payload: string): Promise<IInvoice> => {
+    const options = {
+      method: "GET",
+      headers: {
+        accept: "application/json",
+        authorization: `Basic ${alegra.b64}`,
+      }
+    }
+    const data = await (await fetch(`${alegra_v1}invoices/${payload}`, options)).json()
+    return data
+  }
+
+  return { invoice_post, invoice_get }
 }
 
 export default useInvoice

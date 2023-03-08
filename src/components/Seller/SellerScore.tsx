@@ -6,6 +6,7 @@
  * @returns {React.FC}
  */
 import { useEffect, useState } from "react"
+import { max_votes } from "@config/game.json"
 import st from "@css/Seller.module.css"
 import { alegra_v1 } from "@config/api.json"
 import { alegra } from "@config/credentials.json"
@@ -16,7 +17,7 @@ import { AlegraActionTypes } from "@contextApi/actionsTypes/AlegraActionTypes"
 import { useFetch, useAlegraContext, useInvoice } from "@hooks"
 
 const SellerScore: React.FC = () => {
-  const { sellers } = useAlegraContext()
+  const { sellers, current_vote_img } = useAlegraContext()
   const { invoice_post } = useInvoice()
   const [data_rest, set_data_rest] = useState<any>({})
 
@@ -49,7 +50,7 @@ const SellerScore: React.FC = () => {
         }
       })
 
-      const winner: ISeller[] = participants.filter((item: ISeller) => typeof item.votes === "number" && item.votes > 2)
+      const winner: ISeller[] = participants.filter((item: ISeller) => typeof item.votes === "number" && item.votes >= max_votes)
 
       if (!!winner.length) {
         const winner_points: number = participants.reduce((accumulator: number, current: ISeller) => {
@@ -72,8 +73,10 @@ const SellerScore: React.FC = () => {
   }, [sellers.state])
 
   useEffect(() => {
-    // redirect on create_invoice
-    data_rest.id && console.log(data_rest.id)
+    data_rest.id && current_vote_img.dispatch({
+      type: AlegraActionTypes.seller_handle_game_invoice_winner,
+      payload: { winner_invoice_id: data_rest.id }
+    })
   }, [data_rest])
 
   const template = (

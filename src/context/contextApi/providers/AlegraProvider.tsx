@@ -12,7 +12,11 @@ import { AlegraReducer, AlegraReducerSearch, AlegraReducerVoteImg } from "@conte
 const AlegraProvider = (props: { children: ReactNode }) => {
   const [sellers, set_sellers] = useReducer(AlegraReducer, [])
   const [word, set_word] = useReducer(AlegraReducerSearch, { word: "", status: 0 })
-  const [current_vote_img, setcurrent_vote_img] = useReducer(AlegraReducerVoteImg, { current_vote_img: "" })
+  const [current_vote_img, setcurrent_vote_img] = useReducer(AlegraReducerVoteImg, {
+    current_vote_img: "",
+    is_there_invoice: false,
+    winner_invoice_id: ""
+  })
 
   const dataProvider = {
     sellers: {

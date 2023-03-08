@@ -5,9 +5,9 @@
 }
 
 .invoice_content {
-  max-width: 400px;
   height: auto;
   pointer-events: none;
+  max-width: 400px;
 }
 
 .invoice_content p {
@@ -19,6 +19,11 @@
   font-size: 1.8rem;
   font-family: var(--font-family);
   font-weight: 500;
+}
+
+.invoice_content p:last-child {
+  text-align: justify;
+  display: block;
 }
 
 .key_attr {

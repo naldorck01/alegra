@@ -26,6 +26,7 @@ export const AlegraActionTypes = {
   seller_add_vote: "[alegra] add 1 vote",
   seller_add_img: "[alegra] add 1 img",
   seller_handle_current_vote_img: "[alegra] add current vote image",
+  seller_handle_game_invoice_winner: "[alegra] add game invoice winner",
   seller_clear_current_vote_img: "[alegra] clear current vote image",
   search_set: "[alegra] set search current word",
   search_set_status: "[alegra] set search current status",
