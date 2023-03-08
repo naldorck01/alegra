@@ -5,6 +5,7 @@
  * @author Naldo Duran <naldorck@gmail.com> *
  * @returns {React.FC}
  */
+import Invoice from "@components/SellerInvoice/Invoice"
 
 const Bill: React.FC = () => {
   const template = (
@@ -12,7 +13,7 @@ const Bill: React.FC = () => {
       <article>
         <h1 className="text-title text-center">Factura de venta</h1>
       </article>
-      {/* <!-- /> */}
+      <Invoice />
     </section>
   )
 
