@@ -1,5 +1,5 @@
 # Description
-TODO
+<p>Application in which users can choose the sellers with the best images</p>
 
 # Usage
 <code>npm install</code>
@@ -22,19 +22,19 @@ TODO
     <tbody>
         <tr>
             <td>vite</td>
-            <td></td>
+            <td>Development ecosystem</td>
         </tr>
         <tr>
             <td>React</td>
-            <td></td>
+            <td>Components library</td>
         </tr>
         <tr>
             <td>Typescript</td>
-            <td></td>
+            <td>Typed javascript development</td>
         </tr>
         <tr>
-            <td></td>
-            <td></td>
+            <td>React Testing Library </td>
+            <td>Development of unit tests on components</td>
         </tr>
     </tbody>
 </table>
@@ -45,6 +45,4 @@ TODO
 # Data Architecture
 <p>Flux + Context API (Native from React.js)</p>
 
-# Folder Architecture
-TODO
 
