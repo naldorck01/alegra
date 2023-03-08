@@ -10,17 +10,15 @@ import { Button } from '@components/Button';
 import { useNavigate } from 'react-router-dom';
 import { ISeller } from '@ctypes/alegra.td';
 
-interface IVote { }
-
-const VoteSuccessPopup = ({ }: IVote) => {
+const VoteSuccessPopup = () => {
   const navigate = useNavigate()
   const { current_vote_img, sellers } = useAlegraContext()
-  let {
+  const {
     current_vote_img: image,
     winner_invoice_id,
     is_there_invoice
   } = current_vote_img.state
-  const is_there_winner = sellers.state.some((seller: ISeller) => (seller.votes && seller?.votes >= max_votes))
+  const is_there_winner = sellers.state.find((seller: ISeller) => (seller.votes && seller?.votes >= max_votes))
 
   useEffect(() => {
     let useTimeOut: ReturnType<typeof setTimeout>;
@@ -63,6 +61,7 @@ const VoteSuccessPopup = ({ }: IVote) => {
         <div className={st.vote_body}>
           <img src={Logo} alt="img" />
           <p>¡Tenemos un ganador!</p>
+          <p>{is_there_winner?.name}</p>
           <p>Continua para ver tu factura</p>
         </div>
         <div className={st.vote_footer}>
