@@ -6,6 +6,7 @@
  * @returns {React.FC}
  */
 import { useEffect, useState } from "react"
+import { max_votes } from "@config/game.json"
 import st from "@css/Seller.module.css"
 import { alegra_v1 } from "@config/api.json"
 import { alegra } from "@config/credentials.json"
@@ -49,7 +50,7 @@ const SellerScore: React.FC = () => {
         }
       })
 
-      const winner: ISeller[] = participants.filter((item: ISeller) => typeof item.votes === "number" && item.votes > 2)
+      const winner: ISeller[] = participants.filter((item: ISeller) => typeof item.votes === "number" && item.votes >= max_votes)
 
       if (!!winner.length) {
         const winner_points: number = participants.reduce((accumulator: number, current: ISeller) => {

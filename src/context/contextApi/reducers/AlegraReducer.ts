@@ -94,14 +94,14 @@ export const AlegraReducerVoteImg = (state: ICurrentVoteImg, action: IAlegraRedu
 
     case AlegraActionTypes.seller_handle_game_invoice_winner:
       return {
-        is_there_winner: true,
+        is_there_invoice: true,
         winner_invoice_id: action.payload.winner_invoice_id,
         current_vote_img: "",
       }
 
     case AlegraActionTypes.seller_clear_current_vote_img:
       return {
-        is_there_winner: false,
+        is_there_invoice: false,
         winner_invoice_id: "",
         current_vote_img: "",
       }

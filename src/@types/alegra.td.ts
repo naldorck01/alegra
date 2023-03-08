@@ -12,7 +12,7 @@ export interface IWinner {
 
 export interface ICurrentVoteImg {
   current_vote_img: string
-  is_there_winner: boolean
+  is_there_invoice: boolean
   winner_invoice_id: string
 }
 

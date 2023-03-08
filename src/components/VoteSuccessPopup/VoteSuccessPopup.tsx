@@ -1,4 +1,5 @@
 import { useEffect } from 'react';
+import { max_votes } from "@config/game.json"
 import { Modal } from "@components/Modal"
 import { ProgressBar } from "@components/ProgressBar"
 import st from "@css/VoteSuccessPopup.module.css"
@@ -7,17 +8,19 @@ import { useAlegraContext } from "@hooks"
 import { AlegraActionTypes } from "@contextApi/actionsTypes/AlegraActionTypes"
 import { Button } from '@components/Button';
 import { useNavigate } from 'react-router-dom';
+import { ISeller } from '@ctypes/alegra.td';
 
 interface IVote { }
 
 const VoteSuccessPopup = ({ }: IVote) => {
   const navigate = useNavigate()
-  const { current_vote_img } = useAlegraContext()
+  const { current_vote_img, sellers } = useAlegraContext()
   let {
     current_vote_img: image,
     winner_invoice_id,
-    is_there_winner
+    is_there_invoice
   } = current_vote_img.state
+  const is_there_winner = sellers.state.some((seller: ISeller) => (seller.votes && seller?.votes >= max_votes))
 
   useEffect(() => {
     let useTimeOut: ReturnType<typeof setTimeout>;
@@ -63,7 +66,11 @@ const VoteSuccessPopup = ({ }: IVote) => {
           <p>Continua para ver tu factura</p>
         </div>
         <div className={st.vote_footer}>
-          <Button label="Continuar" onClick={() => navigate("/bill", { state: { winner_invoice_id } })} />
+          <Button
+            disabled={!is_there_invoice}
+            label={is_there_invoice ? "Continuar" : "Generando factura"}
+            onClick={() => navigate("/bill", { state: { winner_invoice_id } })}
+          />
         </div>
       </div>
     </Modal>
