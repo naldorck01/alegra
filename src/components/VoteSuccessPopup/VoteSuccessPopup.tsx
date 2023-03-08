@@ -27,8 +27,8 @@ const VoteSuccessPopup = ({ }: IVote) => {
       }), 3000)
     }
     return () => clearTimeout(useTimeOut)
-  }, [image])
-  
+  }, [image, is_there_winner])
+
   const ConfirmVoteModal = () => (
     <Modal defaultOpened blockModal hideCloseButton dissapearAfterTime>
       <div className={st.vote_popup_container}>
@@ -63,7 +63,7 @@ const VoteSuccessPopup = ({ }: IVote) => {
           <p>Continua para ver tu factura</p>
         </div>
         <div className={st.vote_footer}>
-          <Button label="Continuar" onClick={() => navigate("/bill", {state: {winner_invoice_id}})} />
+          <Button label="Continuar" onClick={() => navigate("/bill", { state: { winner_invoice_id } })} />
         </div>
       </div>
     </Modal>
