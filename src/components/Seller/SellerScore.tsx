@@ -78,7 +78,7 @@ const SellerScore: React.FC = () => {
 
   const template = (
     <>
-      {loading && !data_rest.hasOwnProperty("id") && <Loading defaultOpened={loading} />}
+      {loading && !data_rest["id"] && <Loading defaultOpened={loading} />}
       <article className={st["seller__score"]}>{!!sellers.state && <List data={sellers.state} />}</article>
     </>
   )
