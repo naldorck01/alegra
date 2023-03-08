@@ -18,7 +18,7 @@ const Bill: React.FC = () => {
   const { invoice_get } = useInvoice()
   const { state } = useLocation()
   const navigate = useNavigate()
-  
+
   useEffect(() => {
     state?.winner_invoice_id ? getInvoice() : navigate("/")
   }, [state])
@@ -32,10 +32,12 @@ const Bill: React.FC = () => {
     <>
       {load && <Loading defaultOpened={load} />}
       <section className="container">
-        <article>
-          <h1 className="text-title text-center">Factura de venta</h1>
-        </article>
-        {invoice && <Invoice invoice={invoice}/>}
+        {invoice && <>
+          <article>
+            <h1 className="text-title text-center">Factura de venta #{invoice.id}</h1>
+          </article>
+          <Invoice invoice={invoice} />
+        </>}
       </section>
     </>
   )
