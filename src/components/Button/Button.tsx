@@ -5,7 +5,7 @@
  * @author Naldo Duran <naldorck@gmail.com> *
  *
  */
-import st from "@components/Button/Button.module.css"
+import st from "@css/Button.module.css"
 
 interface IButton {
   label: string

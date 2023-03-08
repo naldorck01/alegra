@@ -5,7 +5,7 @@
  * @author Naldo Duran <naldorck@gmail.com> *
  * @returns {React.FC}
  */
-import { useContext, useEffect } from "react"
+import { useEffect, useState } from "react"
 import st from "@css/Seller.module.css"
 import { alegra_v1 } from "@config/api.json"
 import { alegra } from "@config/credentials.json"
@@ -13,13 +13,14 @@ import { ISeller } from "@ctypes/alegra.td"
 import { Loading } from "@components/Loading"
 import List from "@components/Seller/List"
 import { AlegraActionTypes } from "@contextApi/actionsTypes/AlegraActionTypes"
-import { AlegraContext } from "@contextApi/context/AlegraContext"
-import { useFetch } from "@hooks"
+import { useFetch, useAlegraContext, useInvoice } from "@hooks"
 
 const SellerScore: React.FC = () => {
-  const { sellers } = useContext(AlegraContext)
+  const { sellers } = useAlegraContext()
+  const { invoice_post } = useInvoice()
+  const [data_rest, set_data_rest] = useState<any>({})
 
-  let options = {
+  const options = {
     method: "GET",
     headers: {
       accept: "application/json",
@@ -39,9 +40,45 @@ const SellerScore: React.FC = () => {
     }
   }, [data])
 
+  useEffect(() => {
+    const exec = async () => {
+      const participants: ISeller[] = sellers.state.map((item: ISeller) => {
+        return {
+          ...item,
+          votes: !!item.votes ? item.votes : 0,
+        }
+      })
+
+      const winner: ISeller[] = participants.filter((item: ISeller) => typeof item.votes === "number" && item.votes > 2)
+
+      if (!!winner.length) {
+        const winner_points: number = participants.reduce((accumulator: number, current: ISeller) => {
+          if (typeof current.votes === "number") {
+            return accumulator + current.votes
+          }
+          return accumulator
+        }, 0)
+
+        const rest = await invoice_post({
+          seller_id: winner[0].id,
+          points_total: winner_points,
+        })
+
+        set_data_rest(rest)
+      }
+    }
+
+    exec()
+  }, [sellers.state])
+
+  useEffect(() => {
+    // redirect on create_invoice
+    data_rest.id && console.log(data_rest.id)
+  }, [data_rest])
+
   const template = (
     <>
-      {loading && <Loading defaultOpened={loading} />}
+      {loading && !data_rest["id"] && <Loading defaultOpened={loading} />}
       <article className={st["seller__score"]}>{!!sellers.state && <List data={sellers.state} />}</article>
     </>
   )

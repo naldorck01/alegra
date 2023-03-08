@@ -1,0 +1,32 @@
+.cont_invoice {
+  display: grid;
+  place-items: center;
+  gap: 2rem;
+}
+
+.invoice_content {
+  max-width: 400px;
+  height: auto;
+  pointer-events: none;
+}
+
+.invoice_content p {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  grid-gap: 1rem;
+  grid-template-areas: "key_attr value_attr";
+  line-height: 4rem;
+  font-size: 1.8rem;
+  font-family: var(--font-family);
+  font-weight: 500;
+}
+
+.key_attr {
+  grid-area: key_attr;
+  color: var(--color-primary);
+}
+
+.value_attr {
+  grid-area: value_attr;
+  color: var(--color-main-gray);
+}

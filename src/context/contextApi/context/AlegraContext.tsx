@@ -12,5 +12,13 @@ export const AlegraContext = createContext<GlobalStateType>({
   sellers: {
     state: [],
     dispatch: () => null
+  },
+  search: {
+    state: { word: "", status: 0 },
+    dispatch: () => null
+  },
+  current_vote_img: {
+    state: { current_vote_img: "" },
+    dispatch: () => null
   }
 })

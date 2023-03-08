@@ -27,10 +27,13 @@
       "@hooks/*": ["hooks/*"],
       "@pages": ["pages/index.ts"],
       "@pages/*": ["pages/*"],
+      "@router": ["router/index.ts"],
+      "@router/*": ["router/*"],
       "@svg": ["assets/alegra/svg/*"],
       "@ctypes/*": ["@types/*"]
     }
   },
-  "include": ["src"],
+  "include": ["src", ".eslintrc.json"],
+  "exclude": ["node_modules"],
   "references": [{ "path": "./tsconfig.node.json" }]
 }

@@ -1,6 +1,8 @@
 import { useState } from "react"
 import { google_images } from "@config/api.json"
 import { google } from "@config/credentials.json"
+import { useAlegraContext } from "@hooks"
+import { AlegraActionTypes } from "@contextApi/actionsTypes/AlegraActionTypes"
 
 interface IOptionsRequestImgs {
   [key: string]: string | number
@@ -8,6 +10,7 @@ interface IOptionsRequestImgs {
 
 export const useGetGoogleImages = () => {
   const { apiKey, id } = google
+  const { search } = useAlegraContext()
   const [data, set_data] = useState<string[]>([])
   const [loading, set_loading] = useState<boolean>(false)
 
@@ -20,6 +23,12 @@ export const useGetGoogleImages = () => {
       set_data([])
       set_loading(true)
       const result = await (await fetch(url)).json()
+      search.dispatch({
+        type: AlegraActionTypes.search_set_status,
+        payload: {
+          status: result.items ? 200 : 404,
+        },
+      })
       set_data(result.items)
       set_loading(false)
     } catch (error: any) {
@@ -30,7 +39,7 @@ export const useGetGoogleImages = () => {
 
   const buildQuery = (query: any, options: any) => {
     options = options || {}
-    let result: any = {
+    const result: any = {
       q: query.replace(/\s/g, "+"),
       searchType: "image",
       cx: id,

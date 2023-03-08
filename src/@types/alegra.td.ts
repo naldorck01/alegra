@@ -1,4 +1,19 @@
 // @types.alegra.ts
+export interface ISearch {
+  word: string
+  status: number
+}
+
+export interface IWinner {
+  seller: ISeller
+  invoice: IInvoice
+  votes: number
+}
+
+export interface ICurrentVoteImg {
+  current_vote_img: string
+}
+
 export interface ISeller {
   id: number
   name: string

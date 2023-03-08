@@ -5,22 +5,22 @@
  * @author Naldo Duran <naldorck@gmail.com> *
  * @returns {React.FC}
  */
-import { useState } from "react"
+
 import { SearchBarImages } from "@components/SearchBarImages"
 import { CardList } from "@components/CardList"
+import { useAlegraContext } from "@hooks"
+import { NotFound } from "@components/NotFound"
 
 const SellerCatalog: React.FC = () => {
-  const [images, set_images] = useState<string[]>([])
+  const { search } = useAlegraContext()
 
   const template = (
     <article>
       <h2 className="text-subtitle text-center">&#161;Busca y escoge tu imagen favorita!</h2>
       <section>
-        <SearchBarImages set_images={set_images} />
+        <SearchBarImages />
       </section>
-      <section>
-        <CardList images={images} />
-      </section>
+      <section>{search.state.status === 404 ? <NotFound /> : search.state.status && <CardList />}</section>
     </article>
   )
 

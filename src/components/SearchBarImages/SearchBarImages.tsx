@@ -8,30 +8,43 @@
 import { useEffect } from "react"
 import st from "@css/SearchBarImages.module.css"
 import { Loading } from "@components/Loading"
-import { useForm, useGetGoogleImages } from "@hooks"
+import { AlegraActionTypes } from "@contextApi/actionsTypes/AlegraActionTypes"
+import { useForm, useGetGoogleImages, useAlegraContext } from "@hooks"
 
-interface ISearchBarImages {
-  set_images: (data: string[]) => void
-}
-
-const SearchBarImages = ({ set_images }: ISearchBarImages) => {
-  const { form_input, handle_input_change } = useForm()
+const SearchBarImages = () => {
+  const { search, sellers } = useAlegraContext()
+  const { form_input, event_set_manually_input, handle_input_change } = useForm()
   const { data, loading, searchImages } = useGetGoogleImages()
 
   useEffect(() => {
-    !!data && set_images(data)
-    console.log(data)
+    !!data &&
+      sellers.dispatch({
+        type: AlegraActionTypes.seller_add_img,
+        payload: {
+          images: data,
+        },
+      })
   }, [data])
 
-  const onSubmit = (event: React.FormEvent): void => {
+  useEffect(() => {
+    !search.state.word && event_set_manually_input(search.state.word, "search")
+  }, [search.state.word])
+
+  const event_submit = (event: React.FormEvent): void => {
     event.preventDefault()
     searchImages(form_input.search, {})
+    search.dispatch({
+      type: AlegraActionTypes.search_set,
+      payload: {
+        word: form_input.search,
+      },
+    })
   }
 
   return (
     <>
       {loading && <Loading defaultOpened={loading} />}
-      <form className={st.wrapper} onSubmit={onSubmit}>
+      <form className={st.wrapper} onSubmit={event_submit}>
         <div className={st.searchBar}>
           <input
             className={st.searchQueryInput}
@@ -40,6 +53,7 @@ const SearchBarImages = ({ set_images }: ISearchBarImages) => {
             placeholder="Im&aacute;genes del mundo"
             name="search"
             onChange={handle_input_change}
+            value={form_input.search}
           />
           <button className={st.searchQuerySubmit} type="submit" name="searchQuerySubmit">
             <svg style={{ width: "24px", height: "24px" }} viewBox="0 0 24 24">
