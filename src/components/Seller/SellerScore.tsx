@@ -16,7 +16,7 @@ import { AlegraActionTypes } from "@contextApi/actionsTypes/AlegraActionTypes"
 import { useFetch, useAlegraContext, useInvoice } from "@hooks"
 
 const SellerScore: React.FC = () => {
-  const { sellers } = useAlegraContext()
+  const { sellers, current_vote_img } = useAlegraContext()
   const { invoice_post } = useInvoice()
   const [data_rest, set_data_rest] = useState<any>({})
 
@@ -72,8 +72,10 @@ const SellerScore: React.FC = () => {
   }, [sellers.state])
 
   useEffect(() => {
-    // redirect on create_invoice
-    data_rest.id && console.log(data_rest.id)
+    data_rest.id && current_vote_img.dispatch({
+      type: AlegraActionTypes.seller_handle_game_invoice_winner,
+      payload: { winner_invoice_id: data_rest.id }
+    })
   }, [data_rest])
 
   const template = (

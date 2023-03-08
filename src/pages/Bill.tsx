@@ -6,8 +6,9 @@
  * @returns {React.FC}
  */
 import Invoice from "@components/SellerInvoice/Invoice"
+import checkInvoiceHOC from "../hoc/checkInvoiceHOC"
 
-const Bill: React.FC = () => {
+const Bill = checkInvoiceHOC(() => {
   const template = (
     <section className="container">
       <article>
@@ -18,6 +19,6 @@ const Bill: React.FC = () => {
   )
 
   return template
-}
+})
 
 export default Bill

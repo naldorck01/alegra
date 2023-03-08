@@ -18,7 +18,7 @@ export const AlegraContext = createContext<GlobalStateType>({
     dispatch: () => null
   },
   current_vote_img: {
-    state: { current_vote_img: "" },
+    state: { current_vote_img: "", is_there_winner: false, winner_invoice_id: ""},
     dispatch: () => null
   }
 })

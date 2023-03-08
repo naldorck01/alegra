@@ -1,8 +1,11 @@
 import st from "@css/Invoice.module.css"
 import Logo from "@svg/logo_header_blue.svg"
 import { Button } from "@components/Button"
+import { useNavigate } from "react-router-dom"
 
 export const Invoice = () => {
+  const navigate = useNavigate()
+
   const template = (
     <article className={st.cont_invoice}>
       <img src={Logo} alt="logo" />
@@ -28,7 +31,7 @@ export const Invoice = () => {
           <span className={st.value_attr}>16</span>
         </p>
       </div>
-      <Button label="Volver a jugar" onClick={() => console.log("Volver")} />
+      <Button label="Volver a jugar" onClick={() => navigate("/")} />
     </article>
   )
 
