@@ -20,7 +20,7 @@ const SellerCatalog: React.FC = () => {
       <section>
         <SearchBarImages />
       </section>
-      <section>{search.state.status === 404 ? <NotFound /> : search.state.status && <CardList />}</section>
+      <section>{search.state.status === 404 ? <NotFound /> : !!search.state.status && <CardList />}</section>
     </article>
   )
 
