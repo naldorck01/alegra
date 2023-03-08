@@ -7,10 +7,25 @@
  */
 import { alegra } from "@config/credentials.json"
 import { alegra_v1 } from "@config/api.json"
-import { useFetch, useAlegraContext } from "@hooks"
+import { useFetch } from "@hooks"
 
-const useInvoice = () => {
-  const invoice_post = (payload: any) => {
+interface IInvoicePost {
+  data: any
+}
+
+interface IInvoicePostPayload {
+  seller_id: number
+  points_total: number
+}
+
+interface IUseInvoice {
+  invoice_post: (payload: IInvoicePostPayload) => Promise<IInvoicePost>
+}
+
+const useInvoice = (): IUseInvoice => {
+  const invoice_post = async (payload: IInvoicePostPayload): Promise<IInvoicePost> => {
+    const _date = new Date()
+
     const options = {
       method: "POST",
       headers: {
@@ -19,14 +34,14 @@ const useInvoice = () => {
       },
       body: JSON.stringify({
         status: "open",
-        date: "2023-03-03",
-        dueDate: "2023-03-03",
-        subtotal: 21,
+        date: _date.toISOString().split("T")[0],
+        dueDate: _date.toISOString().split("T")[0],
+        subtotal: 1,
         discount: 0,
         tax: 0,
-        total: 21,
+        total: 1,
         totalPaid: 0,
-        balance: 21,
+        balance: 1,
         decimalPrecision: "0",
         numberTemplate: {
           number: 1,
@@ -34,34 +49,23 @@ const useInvoice = () => {
         client: {
           id: 1,
         },
-        seller: 1,
+        seller: payload.seller_id,
         priceList: {
           id: 1,
           name: "General",
         },
         items: [
           {
-            name: "Prueba manual",
-            description: "",
             price: 1,
-            discount: 0,
-            reference: "",
-            quantity: 10,
+            quantity: payload.points_total,
             id: 1,
-            productKey: null,
-            unit: "unit",
-            tax: [],
-            total: 10,
           },
         ],
       }),
     }
-    const { loading, data } = useFetch<any>(`${alegra_v1}sellers`, options)
+    const data = await (await fetch(`${alegra_v1}invoices`, options)).json()
 
-    return {
-      loading,
-      data,
-    }
+    return data
   }
 
   return { invoice_post }
