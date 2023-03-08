@@ -1,4 +1,5 @@
 /// <reference types="vitest" />
+/// <reference types="Vite/client" />
 
 import { defineConfig } from "vite"
 import path from "path"
@@ -9,7 +10,8 @@ import svgr from "vite-plugin-svgr";
 export default defineConfig({
   plugins: [svgr(), react()],
   test: {
-    environment: "jsdom"
+    environment: "jsdom",
+    globals: true
   },
   resolve: {
     alias: {

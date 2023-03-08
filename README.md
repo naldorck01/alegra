@@ -80,7 +80,7 @@
         </tr>
         <tr>
             <td>React Testing Library </td>
-            <td>Development of unit tests on components</td>
+            <td>Development of unit tests on components(virtual DOM)</td>
         </tr>
     </tbody>
 </table>

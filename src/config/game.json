@@ -1,6 +1,6 @@
 {
-  "_comment": "Urls to consume external APIs",
+  "_comment": "App config",
   "_author": "Naldo Duran<@naldorck@gmail.com>",
   "_version": "0.1.1",
-  "max_votes": 2
+  "max_votes": 20
 }
