@@ -2,9 +2,11 @@ import st from "@css/Invoice.module.css"
 import Logo from "@svg/logo_header_blue.svg"
 import { Button } from "@components/Button"
 import { useNavigate } from "react-router-dom"
+import { IInvoice } from "@ctypes/alegra.td"
 
-export const Invoice = () => {
+export const Invoice = ({ invoice }: { invoice: IInvoice }) => {
   const navigate = useNavigate()
+  console.log("invoice", invoice)
 
   const template = (
     <article className={st.cont_invoice}>
