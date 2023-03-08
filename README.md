@@ -1,7 +1,6 @@
 # Description
 
 <p>Application in which users can choose the sellers with the best images</p>
-<p>TODO: Incomplete unit testing</p>
 
 # Usage
 
